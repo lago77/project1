@@ -1,18 +1,24 @@
 from django.shortcuts import render
 from flask import render_template, redirect,url_for, request, session
+import json
 
-def my_dashboard():
+from repository.userlogin_dao import select_user_by_username
+def my_dashboard(username, password):
    print("my request")
    print("my username is")
-   print(session['name'])
+   # print(session['name'])
 
+   myname="i'm testing this again"
+   myobject=["hey", 1, "now again"]
+   # mydata=json.loads(data)
+   
+   print("mydata in dashboard")
+   
+   myuser=select_user_by_username(username)
+   print("my user")
+   print(myuser)
+   myuserid=myuser.user_id
+   mydict={'username':username, 'password':password, "userid":myuserid}
+   return mydict
+   # return render_template('dashboard.html',mydict=mydict)
 
-   return render_template('dashboard.html')
-
-def my_another():
-
-    print("testing")
-    print("my name")
-    print(session['name'])
-    return render_template('another.html')
-    # return redirect(url_for('anothers',name = name))
