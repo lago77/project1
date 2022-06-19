@@ -1,0 +1,31 @@
+These are examples of some scripts to insert into postman:
+
+Tests if a cookie is in response
+
+pm.test("Cookie JSESSIONID is present", () => {
+  pm.expect(pm.cookies.has('JSESSIONID')).to.be.true;
+});
+
+----------------------------------------------------------
+
+Tests for a cookie value
+
+pm.test("Cookie isLoggedIn has value 1", () => {
+  pm.expect(pm.cookies.get('isLoggedIn')).to.eql('1');
+});
+
+----------------------------------------------------------
+Parsing JSON data syntax
+
+const responseJson = pm.response.json();
+
+----------------------------------------------------------
+
+Testing for various status codes in a set
+
+pm.test("Successful POST request", () => {
+  pm.expect(pm.response.code).to.be.oneOf([201,202]);
+});
+
+
+These are the ones that I found most useful to what we're doing.
