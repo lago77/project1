@@ -31,19 +31,19 @@ from repository.requests_dao import *
 #     assert user_conditional !=True, "User selection failed"
 
 
-@pytest.mark.parametrize("user_id, description, amount",[ (1, "asdfasd3fsdfsdfs", 100), (2, "sfdas3dfsadfsd faf asdfsdfsfsd3fsdf",100), (3,"sd3fs", 10),(4,"sdfsdf3sd",30)
+# @pytest.mark.parametrize("user_id, description, amount",[ (1, "asdfasd3fsdfsdfs", 100), (2, "sfdas3dfsadfsd faf asdfsdfsfsd3fsdf",100), (3,"sd3fs", 10),(4,"sdfsdf3sd",30)
 
- ])
-def test_insert_request(user_id, description, amount):
-    ##this function tests to make sure the balance is not negative or and not a string when entered.
+#  ])
+# def test_insert_request(user_id, description, amount):
+#     ##this function tests to make sure the balance is not negative or and not a string when entered.
     
-    id=insert_request(user_id,description,amount)
+#     id=insert_request(user_id,description,amount)
     
-    id_int=int(id)
-    id_int_conditional = (type(id_int)==int)
-    print("hi")
+#     id_int=int(id)
+#     id_int_conditional = (type(id_int)==int)
+#     print("hi")
 
-    assert id_int_conditional == True, "Insertion failed, no id returned"
+#     assert id_int_conditional == True, "Insertion failed, no id returned"
 
 # @pytest.mark.parametrize("request_id, status",[ (1, "Denied"), (2, "Approved"), (3, "Approved")
 
