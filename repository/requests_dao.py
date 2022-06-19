@@ -34,7 +34,14 @@ def select_requests_by_id(user_id):
     try:
         cursor.execute(qry)
         while True:
-            record = cursor.fetchall()[0]
+            record = cursor.fetchall()
+            print("got the requests")
+            print(record)
+            print("record type")
+            print(type(record))
+            print("second record")
+            print(record[1])
+            print(record[1][2])
             if record is None:
                 break
             # user_transaction= Transactions(record[0], record[1], record[2], record[3], record[4])
@@ -48,8 +55,8 @@ def select_requests_by_id(user_id):
             print(record)
             print(record[0])
             print("end")
-            Request = Requests(record[0], record[1], record[2], record[3], record[4])
-            return Request
+            # Request = Requests(record[0], record[1], record[2], record[3], record[4])
+            return record
     except(psycopg2.DatabaseError) as error:
         print(error)
     finally:
@@ -81,6 +88,10 @@ def update_request(request_id, status):
     connection = get_connection()
     cursor = connection.cursor()
     print("we are connecting")
+    if status=="Approve":
+        status="Approved"
+    else:
+        status="Denied"
     qry = "UPDATE project1.requests SET status=%s WHERE request_id = %s RETURNING status;"
 
     try:
@@ -101,7 +112,7 @@ def delete_requests_by_id(request_id):
     connection = get_connection()
     cursor = connection.cursor()
     print(type(request_id))
-    qry = "DELETE FROM project1.requests WHERE request_id = %s;"
+    qry = "DELETE FROM project1.requests WHERE request_id = %s RETURNING user_id;"
 
     print("query")
     print(qry)

@@ -68,11 +68,16 @@ form.addEventListener("submit", function (event) {
 	}
 });
 
+var userDetail = [
+    {name:"sunil",age:"24",place:"delhi",avatar:"./image/abc.jpg",country:"India"},
+    {name:"sujan",age:"22",place:"assam,",avatar:"./image/abc.jpg",country:"India"},
+    {name:"abishek",age:"26",place:"kolkata",avatar:"./image/abc.jpg",country:"India"},
+    {name:"chiranjeev",age:"20",place:"bangalore",avatar:"./image/abc.jpg",country:"India"},
+]
 
 
-document.getElementById('test1').innerHTML = userDetail.map(user => 
+document.getElementById('demo').innerHTML = userDetail.map(user => 
     `<div>
-	<h1>hi</h1>
       <div>Name: ${user.name}</div>
       <div>Age: ${user.age}</div>
       <div>Place: ${user.place}</div>
@@ -81,7 +86,6 @@ document.getElementById('test1').innerHTML = userDetail.map(user =>
     </div>`
 ).join('')
 
-let count=5;
 
 setInterval(displayHello, 15000);
 
@@ -166,30 +170,30 @@ function displayHello() {
 // })
 
 /////////////delete request
-fetch("http://127.0.0.1:5000/delete_request/", {
-  method: "delete",
-  headers: {
-    'Accept': 'application/json',
-    // "Content-Type": "text/plain"
+// fetch("http://127.0.0.1:5000/delete_request/", {
+//   method: "delete",
+//   headers: {
+//     'Accept': 'application/json',
+//     // "Content-Type": "text/plain"
 
-  },
+//   },
 
-  //make sure to serialize your JSON body
-  body: JSON.stringify({
-    request_id: 97
+//   //make sure to serialize your JSON body
+//   body: JSON.stringify({
+//     request_id: 97
 
-  })
-})
-.then( function (response) { 
-   //do something awesome that makes the world a better place
-  console.log("my response ",response.ok)
-   return response.ok; //response.ok==true means deletion was successful, no way to get return response?
-})
-// .then(function(data){console.log("my data ",data)});
-.then((data) => {
-    // do stuff with responseJSON here...
-    console.log("my data", data);
+//   })
+// })
+// .then( function (response) { 
+//    //do something awesome that makes the world a better place
+//   console.log("my response ",response.ok)
+//    return response.ok; //response.ok==true means deletion was successful, no way to get return response?
+// })
+// // .then(function(data){console.log("my data ",data)});
+// .then((data) => {
+//     // do stuff with responseJSON here...
+//     console.log("my data", data);
 
-})
+// })
 
 }

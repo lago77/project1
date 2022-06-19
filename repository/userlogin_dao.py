@@ -73,7 +73,7 @@ def insert_user(username, password, role):
     cursor = connection.cursor()
 
     qry = "INSERT INTO project1.userLogin VALUES (default, %s, %s, %s) RETURNING user_id;"
-
+    print("users")
 
     try:
         cursor.execute(qry, (username, password, role))

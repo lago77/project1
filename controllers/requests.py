@@ -5,7 +5,7 @@ from repository.requests_dao import *
 from models.login_dto import Login
 from repository.requests_dao import *
 import json
-
+from flask import redirect, url_for, session
 def getrequests():
 
     requests=tuple(select_requests())
@@ -29,12 +29,13 @@ def getrequests():
 
 def getrequest(id):
 
-    request=select_requests_by_id(id)
+    requests=select_requests_by_id(id)
 
     # for request in requests:
     request_dict={}
     # request_dict[id]=request
-    print(request)
+    print("these are the requests")
+    # print(request)
     # print("ending loop")
     # print(request_dict)
     # print(type(request_dict[2]))
@@ -44,78 +45,113 @@ def getrequest(id):
     #     self.amount = amount
     #     self.status = status
 
-    request_dict['request_id']=request.request_id
-    request_dict['user_id']=request.user_id
-    request_dict['description']=request.description
-    request_dict['amount']=request.amount
-    request_dict['status']=request.status
-    print(request)
+    # request_dict['request_id']=request.request_id
+    # request_dict['user_id']=request.user_id
+    # request_dict['description']=request.description
+    # request_dict['amount']=request.amount
+    # request_dict['status']=request.status
+    requestdict={}
+    for item in requests:
+        requestdict[item[0]]=item
+    
     print("request dict[id]")
-    print(request_dict)
-    return "hei"
+    dict1={1:["Dsfsd"]}
+    print(type(dict1[1]))
+    print("the new request dictionary")
+    print(requestdict)
+  
+    req_json=jsonify(requestdict)
+    # print(request_dict)
+    print("req json")
+    print(req_json)
+    return req_json
     # return render_template('random1.html',request=request_dict, id=id)
 
 
-def makerequest(data):
+def makerequest(description,amount):
 
     # myupdate = update_request(data['id'],data['status'])
-    print("data")
-    print(data)
+    print("in makerequest")
+    print(description)
+    print(amount)
+    user=select_user_by_username(session['username'])
+    print("my id is")
+    id=user.user_id
+    print(id)
     # print("my data")
     # print(type(data))
     
     # print(data)
     # mydata=str(data)
     # print(mydata)
-    mydata = json.loads(data)
-    print("mydata")
-    print(mydata)
+
+    # mydata = json.loads(data)
+    # print("mydata")
+    # print(mydata)
+
     # print(mydata['id'])
     # print(mydata['status'])
     # print(mydata)
-    requestid=insert_request(mydata['userid'],mydata['description'],mydata['amount'])
-    print(requestid)
+
+    requestid=insert_request(id,description,amount)
+    # print(requestid)
+
     # print("new data")
     # print(newdata)
-    print("ending the function")
-    makedict={"requestid":requestid}
+    # print("ending the function")
+    # makedict={"requestid":requestid}
     
-    return makedict
+    return "make request"
 
 
 
-def updaterequest(data):
+def updaterequest(id,status):
 
-    # myupdate = update_request(data['id'],data['status'])
-    print("my data")
-    print(type(data))
+    # # myupdate = update_request(data['id'],data['status'])
+    # print("my data")
+    # print(type(data))
     
-    print(data)
-    # mydata=str(data)
-    mydata = json.loads(data)
-    print(mydata['id'])
-    print(mydata['status'])
-    print(mydata)
-    newdata=update_request(mydata['id'],mydata['status'])
-    print("new data")
-    print(newdata)
-    return "in update request"
-
-
-
-def deleterequest(data):
-
-    # myupdate = update_request(data['id'],data['status'])
-    print("my data")
-    print(type(data))
-    
-    print(data)
-    # mydata=str(data)
-    mydata = json.loads(data)
-    print(mydata['request_id'])
-    print(mydata)
-    newdata=delete_requests_by_id(mydata['request_id'])
+    # print(data)
+    # # mydata=str(data)
+    # mydata = json.loads(data)
+    # print(mydata['id'])
+    # print(mydata['status'])
+    # print(mydata)
+    newdata=update_request(id,status)
     # print("new data")
+    # print(newdata)
+    print("in update request")
+    print(id)
+    print(status)
+    if session['role']=="Employee":
+
+        return redirect(url_for('dashboardE',user=session['username']))
+
+    else:
+        return redirect(url_for('dashboardM',user=session['username']))
+
+
+
+def deleterequest(id):
+
+    # myupdate = update_request(data['id'],data['status'])
+    # print("my data")
+    # print(type(data))
+    
+    # print(data)
+    # # mydata=str(data)
+    # mydata = json.loads(data)
+    # print(mydata['request_id'])
+    # print(mydata)
+    newdata=delete_requests_by_id(id)
+    print(session['username'])
+    # print("new data")
+    print("new data is")
     print(newdata)
     print("deleted")
-    return newdata
+    if session['role']=="Employee":
+
+        return redirect(url_for('dashboardE',user=session['username']))
+
+    else:
+        return redirect(url_for('dashboardM',user=session['username']))
