@@ -9,22 +9,36 @@ from controllers.requests import *
 from controllers.users import *
 from flask_cors import CORS, cross_origin 
 from flask import Response
-
+import logging
+import os
 app = Flask(__name__)
 CORS(app)
 app.secret_key = 'BAD_SECRET_KEY'
+# os.makedirs("log")
+
+logger = logging.getLogger('factory')
+fh = logging.FileHandler('log/factory.log')
+fh.setLevel(logging.DEBUG)
+formatter = logging.Formatter('%(asctime)s %(levelname)s: %(funcName)s:%(lineno)d %(message)s')
+fh.setFormatter(formatter)
+logger.addHandler(fh)
+
+
 
 @app.route('/loginpage', methods=['GET'])
 def loginpage():
+    logger.info("in the login page")
     return render_template('login.html')
 
 @app.route('/registrationpage', methods=['GET'])
 def registrationpage():
+    logger.info("registration route")
     return render_template('registration.html')
 
 @app.route('/nextpage')
 @app.route('/login',methods = ['POST'])
 def login():
+   logger.info("login route")
    print("the request is in login")
 #    print(request.data)
 #    mydata=json.loads(request.data)
@@ -60,7 +74,7 @@ def login():
 
 @app.route('/dashboardE', methods=['GET'])
 def dashboardE():
-
+    logger.info("Employee dashboard route")
     print("in dashboard")
     # print(request.args)
     # print(request.args['user'])
@@ -75,7 +89,7 @@ def dashboardE():
 
 @app.route('/dashboardM', methods=['GET'])
 def dashboardM():
-
+    logger.info("manager dashboard route")
     print("in dashboard")
     print(request.args)
     print(request.args['user'])
@@ -89,26 +103,30 @@ def dashboardM():
 
 @app.route('/', methods=['GET'])
 def homepage():
+    logger.info("homepage route")
     return render_template('main.html')
 
 @app.route('/requests',methods=['GET'])
 def requests():
+    logger.info("requests route")
     return getrequests()
 
 @app.route('/users',methods=['GET'])
 @cross_origin()
 def users():
+    logger.info("users route")
     return getusers()
 
 @app.route('/get_user/<id>',methods=['GET'])
 def get_user(id):
+    logger.info("get user by id route")
     print("in get_user")
     return getuser(id)
 
 @app.route('/make_request/',methods=['POST'])
 # @cross_origin()
 def makereq():
-    
+    logger.info("make request route")
     print("my data")
     data="test"
     print("my request")
@@ -127,7 +145,7 @@ def makereq():
 
 @app.route('/update_request/',methods=['POST','GET'])
 def updatereq():
-    
+    logger.info("update request route")
     print("my data")
     data="test"
     print("my request")
@@ -149,7 +167,7 @@ def updatereq():
 
 @app.route('/delete_request/',methods=['POST'])
 def deletereq():
-    
+    logger.info("delete request route")
     print("my data")
     data="test"
     print("my request")
@@ -163,7 +181,7 @@ def deletereq():
 @app.route('/get_request/<id>',methods=['GET'])
 def get_req(id):
     print("in getreq")
-   
+    logger.info("get request route")
     return getrequest(id)
 
 
@@ -178,7 +196,7 @@ def get_req(id):
 @app.route('/register',methods = ['POST'])
 def register():
 
-
+    logger.info("register user route")
     # username = request.form['username']
     # password = request.form['password']
     print("my request")
