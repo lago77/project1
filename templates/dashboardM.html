@@ -2,6 +2,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+   <title>Dashboard</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <style>
 #container {
@@ -70,15 +71,27 @@ label, input {
           <input type="amount" name="amount" id="amount" required>
         </div>
         <div class="form-example">
-          <input type="submit" value="Submit">
+          <input type="submit" value="Submit" id ="submitrequest">
         </div>
       </form>
        </div>
+       <h4>My requests</h4>
+       <div id="container">
 
+      
+         <div id="myrequests">
+   
+         
+         </div>
+
+<div>
+       <h4>Requests to be processed</h4>
+       </div>
+       <h1></h1>
    <div id="container">
 
-
-      <div id="demo">
+      
+      <div id="requests">
 
       
       </div>
@@ -99,19 +112,21 @@ label, input {
 
 async function fetchrequests() {
  const id={{userid}};
-    const response = await fetch(`http://127.0.0.1:5000/get_request/${id}`)
+    const response = await fetch(`http://127.0.0.1:5000/requests`)
   .then(response => response.json())
   .then(function(data) { return data });
 
 //   console.log("my data ",response[5][0])
 const reqArray=[];
 const myvar=Object.keys(response).map(function(key, index) {
-   console.log("start");
-   console.log(index);
-  console.log(response[key] );
+//    console.log("start");
+//    console.log(index);
+//   console.log(response[key] );
   reqArray.push(response[key])
-  console.log("end");
+//   console.log("end");
 });
+
+
 // document.getElementById('demo').innerHTML = reqArray.map(req => 
 //     `<div id="datacontainer">
 //          <div id="data">
@@ -123,10 +138,10 @@ const myvar=Object.keys(response).map(function(key, index) {
 //     </div>`
 // ).join('')
 
-document.getElementById('demo').innerHTML = reqArray.map(req => 
+document.getElementById('requests').innerHTML = reqArray.map(req => 
     `<div id="datacontainer">
-         <div id="data">
-            <form action = "/update_request/" method = "post" id="data">
+         <div id="datam1">
+            <form action = "/update_request/" method = "post" id="datam">
 
          <div id="element">
          <label for="requestid">Request id:</label><br>
@@ -151,11 +166,11 @@ document.getElementById('demo').innerHTML = reqArray.map(req =>
          </div>
 
          <div id="element">
-         <p><input type = "submit" name="Approve" value = "Approve"/></p>
+         <p><input id="approve" type = "submit" name="Approve" value = "Approve"/></p>
          </div>
 
          <div id="element">
-         <p><input type = "submit" name="Deny" value = "Deny"/></p>
+         <p><input id="deny" type = "submit" name="Deny" value = "Deny"/></p>
          </div>
 
 
@@ -165,26 +180,25 @@ document.getElementById('demo').innerHTML = reqArray.map(req =>
     </div>`
 ).join('')
 
-// <div id="element">
-//          <p><input type = "submit" value = "Cancel"/></p>
-//          </div>
+}
+
+async function fetchmyrequests() {
+ const id={{userid}};
+    const response = await fetch(`http://127.0.0.1:5000/get_request/${id}`)
+  .then(response => response.json())
+  .then(function(data) { return data });
+
+//   console.log("my data ",response[5][0])
+const reqArray=[];
+const myvar=Object.keys(response).map(function(key, index) {
+//    console.log("start");
+//    console.log(index);
+//   console.log(response[key] );
+  reqArray.push(response[key])
+//   console.log("end");
+});
 
 
-// <form action = "/login" method = "post">
-//          <div id="element">
-//          <label for="requestid">Request id:</label><br>
-//          <input type="text" id="username" name="requestid" value=${req[0]} disabled> 
-//          </div>
-//          <div id="element">
-//          <label for="description">Description:</label><br>
-//          <input type="text" id="description" name="description" value=${req[2]}><br><br>
-//          </div>
-//          <div id="element">
-//          <p><input type = "submit" value = "submit"/></p>
-//          </div>
-//       </form>
-
-      
 // document.getElementById('demo').innerHTML = reqArray.map(req => 
 //     `<div id="datacontainer">
 //          <div id="data">
@@ -196,12 +210,48 @@ document.getElementById('demo').innerHTML = reqArray.map(req =>
 //     </div>`
 // ).join('')
 
+document.getElementById('myrequests').innerHTML = reqArray.map(req => 
+    `<div id="datacontainer">
+         <div id="data">
+            <form action = "/delete_request/" method = "post" id="data">
 
+         <div id="element">
+         <label for="requestid">Request id:</label><br>
+         </div>
+         <div id="element">
+         <input size=1 type="text" id="requestid" name="requestid" value=${req[0]} readonly> 
+         </div>
+
+         <div id="element">
+         <label for="description">Description:</label><br>
+         <input size=50 type="text" id="description" name="description" value="${req[2]}"><br><br>
+         </div>
+
+         <div id="element">
+         <label for="amount">Amount:</label><br>
+         <input size=2 type="text" id="amount" name="amount" value=${req[3]} disabled><br><br>
+         </div>
+
+         <div id="element">
+         <label for="status">Status:</label><br>
+         <input type="text" id="status" name="status" value=${req[4]} disabled><br><br>
+         </div>
+
+         <div id="element">
+         <p><input id="cancel" type = "submit" name="cancel" value = "Cancel"/></p>
+         </div>
+
+
+      </form>
+
+         </div>
+    </div>`
+).join('')
 
 }
 
-setInterval(fetchrequests, 5000);
-
+setInterval(fetchrequests, 1000);
+setInterval(fetchmyrequests,1000);
 // var userDetail = [
 //     {name:"sunil",age:"24",place:"delhi",avatar:"./image/abc.jpg",country:"India"},
 //     {name:"sujan",age:"22",place:"assam,",avatar:"./image/abc.jpg",country:"India"},

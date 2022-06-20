@@ -49,7 +49,8 @@ def select_user_by_id(user_id):
 def select_user_by_username(username):
     connection = get_connection()
     cursor = connection.cursor()
-
+    print("selecting user")
+    print(username)
     qry = f"SELECT * FROM project1.userLogin WHERE username = '{username}';"
 
     try:

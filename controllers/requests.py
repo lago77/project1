@@ -6,6 +6,8 @@ from models.login_dto import Login
 from repository.requests_dao import *
 import json
 from flask import redirect, url_for, session
+from service.valid_amount import *
+from service.valid_description import * 
 def getrequests():
 
     requests=tuple(select_requests())
@@ -74,34 +76,32 @@ def makerequest(description,amount):
     print("in makerequest")
     print(description)
     print(amount)
-    user=select_user_by_username(session['username'])
-    print("my id is")
-    id=user.user_id
-    print(id)
-    # print("my data")
-    # print(type(data))
-    
-    # print(data)
-    # mydata=str(data)
-    # print(mydata)
+    valamount=validate_amount(description)
+    valdescription=validate_description(amount)
+    if (valamount and valdescription):
+        user=select_user_by_username(session['username'])
+        print("my id is")
+        id=user.user_id
+        print(id)
 
-    # mydata = json.loads(data)
-    # print("mydata")
-    # print(mydata)
 
-    # print(mydata['id'])
-    # print(mydata['status'])
-    # print(mydata)
+        requestid=insert_request(id,description,amount)
+        # print(requestid)
+        
+        if session['role']=="Employee":
 
-    requestid=insert_request(id,description,amount)
-    # print(requestid)
+            return redirect(url_for('dashboardE',user=session['username']))
 
-    # print("new data")
-    # print(newdata)
-    # print("ending the function")
-    # makedict={"requestid":requestid}
-    
-    return "make request"
+        else:
+            return redirect(url_for('dashboardM',user=session['username']))
+
+    else:
+        if session['role']=="Employee":
+
+            return redirect(url_for('dashboardE',user=session['username']))
+
+        else:
+            return redirect(url_for('dashboardM',user=session['username']))
 
 
 

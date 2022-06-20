@@ -2,6 +2,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+   <title>Dashboard</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <style>
 #container {
@@ -70,7 +71,7 @@ label, input {
           <input type="amount" name="amount" id="amount" required>
         </div>
         <div class="form-example">
-          <input type="submit" value="Submit">
+          <input type="submit" value="Submit" id="submitrequest">
         </div>
       </form>
        </div>
@@ -155,7 +156,7 @@ document.getElementById('demo').innerHTML = reqArray.map(req =>
          </div>
 
          <div id="element">
-         <p><input type = "submit" name="cancel" value = "Cancel"/></p>
+         <p><input id="cancel" type = "submit" name="cancel" value = "Cancel"/></p>
          </div>
 
 

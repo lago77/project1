@@ -32,6 +32,7 @@ def getuser(id):
     request_dict['userid']=request.user_id
     request_dict['username']=request.username
     request_dict['password']=request.password
+    
     print(request)
     # print("ending loop")
     # print(request_dict)

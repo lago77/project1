@@ -34,7 +34,13 @@ def login():
    username=request.form['username']
    password=request.form['password']
    session['username']=username
+   print("user type")
+   print(type(username))
    user=select_user_by_username(username)
+   print("my user")
+   print(user)
+   print("username")
+   print(username)
    session['role']=user.role
    session['userid']=user.user_id
    if request.method == 'POST':
@@ -56,9 +62,9 @@ def login():
 def dashboardE():
 
     print("in dashboard")
-    print(request.args)
-    print(request.args['user'])
-    print(type(request.args['user']))
+    # print(request.args)
+    # print(request.args['user'])
+    # print(type(request.args['user']))
   
     # print(type(request.args['userdata']))
     # username=request.args['username']
@@ -207,7 +213,7 @@ def register():
     # session['username']=username
     result=username + ' ' + password + ' ' + role
     # return registration(username,password)
-    return redirect(url_for("homepage"))
+    return redirect(url_for("loginpage"))
 
 if __name__ == '__main__':
    app.run(debug = True)

@@ -19,8 +19,8 @@ def my_dashboard(user):
    # print(myuser)
    # myuserid=myuser.user_id
    # mydict={'username':username, 'password':password, "userid":myuserid}
-   print("in dashboard")
-   print([session['role']])
+   # print("in dashboard")
+   # print([session['role']])
    # return "hi"
    if session['role']=="Employee":
       print("employee")
