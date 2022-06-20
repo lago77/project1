@@ -22,7 +22,7 @@ def getrequests():
     
     print("ending loop")
     print(request_dict)
-    print(type(request_dict[2]))
+    # print(type(request_dict[2]))
     # return request_dict
     print("my request dict")
     print(request_dict)
@@ -78,30 +78,30 @@ def makerequest(description,amount):
     print(amount)
     valamount=validate_amount(description)
     valdescription=validate_description(amount)
-    if (valamount and valdescription):
-        user=select_user_by_username(session['username'])
-        print("my id is")
-        id=user.user_id
-        print(id)
+    # if (valamount and valdescription):
+    user=select_user_by_username(session['username'])
+    print("my id is")
+    id=user.user_id
+    print(id)
 
 
-        requestid=insert_request(id,description,amount)
-        # print(requestid)
+    requestid=insert_request(id,description,amount)
+    # print(requestid)
         
-        if session['role']=="Employee":
+    if session['role']=="Employee":
 
-            return redirect(url_for('dashboardE',user=session['username']))
-
-        else:
-            return redirect(url_for('dashboardM',user=session['username']))
+        return redirect(url_for('dashboardE',user=session['username']))
 
     else:
-        if session['role']=="Employee":
+        return redirect(url_for('dashboardM',user=session['username']))
 
-            return redirect(url_for('dashboardE',user=session['username']))
+    # else:
+    #     if session['role']=="Employee":
 
-        else:
-            return redirect(url_for('dashboardM',user=session['username']))
+    #         return redirect(url_for('dashboardE',user=session['username']))
+
+    #     else:
+    #         return redirect(url_for('dashboardM',user=session['username']))
 
 
 
@@ -144,11 +144,12 @@ def deleterequest(id):
     # print(mydata['request_id'])
     # print(mydata)
     newdata=delete_requests_by_id(id)
-    print(session['username'])
+    # print(session['username'])
     # print("new data")
     print("new data is")
     print(newdata)
     print("deleted")
+    
     if session['role']=="Employee":
 
         return redirect(url_for('dashboardE',user=session['username']))
