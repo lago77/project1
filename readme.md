@@ -41,7 +41,7 @@ Kanban board: https://trello.com/b/1IhjiJIP/project-1
 
 Create a local git repository using git clone, then enter "git clone git@github.com:lago77/project1.git" then enter the project with cd "project1"
 
-To start working on the project:
+*To start working on the project*
 
 cd project1 then run app.py
 
