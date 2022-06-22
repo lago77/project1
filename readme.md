@@ -30,7 +30,7 @@ Create a local git repository using git clone, then enter "git clone git@github.
 
 To start working on the project:
 
-cd project1
+cd project1 then run app.py
 
 -----------------
 
