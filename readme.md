@@ -1,8 +1,9 @@
 **Project 1**
 
-Project Description
 
 -------------------
+
+Project Description:
 
 This project is a rudimentary expense reimbursement system. This is a single page app (SPA) that allows employees to make reimbursement requests and managers to approve or deny them; managers also have the ability to request reimbursements. The data is persisted on an AWS RDS instance to keep track of user information and requests.
 
