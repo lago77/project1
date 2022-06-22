@@ -9,24 +9,30 @@ Kanban board: https://trello.com/b/1IhjiJIP/project-1
 
 -----------------
 
-Roles: Omar Abdi (Front-end, back-end and behave and selenium testing), Brian Gill (Front-end, back-end, Postman testing)
+**Roles / Responsibilities**
+*Team Lead for the project
+*Coded and tested the Python back-end with Pytest
+*Coded JS and HTML for a dynamic frontend
+*Implemented end-to-end testing with Behave and Selenium
+*Collaborated with team-mate via ping-pong programming
+*Managed the project through GitHub and utilized Kanban boards to itemize and track timelines/tasks
 
 -----------------
 
 **Technologies** 
-Javascript
-HTML
-CSS
-PostgreSQL
-Pytest
-Behave
+*Javascript
+*HTML
+*CSS
+*PostgreSQL
+*Pytest
+*Behave
 
 -----------------
 
 **Features**
-DOM manipulation through Javascript
-RESTful API server
-flask sessions to track user data within the SPA
+*DOM manipulation through Javascript
+*RESTful API server
+*flask sessions to track user data within the SPA
 
 -----------------
 
