@@ -4,20 +4,21 @@ Project Description
 This project is a rudimentary expense reimbursement system. This is a single page app (SPA) that allows employees to make reimbursement requests and managers to approve or deny them; managers also have the ability to request reimbursements. The data is persisted on an AWS RDS instance to keep track of user information and requests.
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 Technologies Used
+-----------------
 JavaScript
 HTML
 CSS
 PostgreSQL
 Pytest
-
-Features
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Features
+-----------------
 DOM manipulation through Javascript
 RESTful API server
 flask sessions to track user data within the SPA
 
 Getting Started
-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+-----------------
 #Create a local git repository using git clone
 git clone git@github.com:lago77/project1.git
 cd project1
