@@ -29,8 +29,7 @@ cd project1
 
 -----------------
 
-Usage
-Essential requirements
+Usage and essential requirements
 
 An RDS system or installed on a local machine
 For remote capabilities:
