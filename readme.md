@@ -8,6 +8,10 @@ This project is a rudimentary expense reimbursement system. This is a single pag
 
 -----------------
 
+Roles: Omar Abdi (Front-end, back-end and behave and selenium testing), Brian Gill (Front-end, back-end, Postman testing)
+
+-----------------
+
 Technologies Used: Javascript, HTML, CSS, PostgreSQL,Pytest, Behave
 
 -----------------
