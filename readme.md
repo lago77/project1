@@ -43,4 +43,3 @@ A running RDS instance to host the database
 Steps to get it running:
 Make sure the RDS instance DB has the SQL scripts ran that generate the required tables
 Populate the tables with user logins needed to access the website
-Complete.
