@@ -1,4 +1,4 @@
-#Project 1#
+Project 1
 
 Project Description
 ----------------------
@@ -16,7 +16,7 @@ Getting Started
 -----------------
 Create a local git repository using git clone, then enter "git clone git@github.com:lago77/project1.git" then enter the project with cd "project1"
 
-# Start working on the project
+To start working on the project:
 
 cd project1
 Usage
